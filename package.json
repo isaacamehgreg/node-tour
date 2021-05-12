@@ -18,5 +18,8 @@
   "homepage": "https://github.com/isaacamehgreg/node-tour#readme",
   "keywords": [
     "ucus"
-  ]
+  ],
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
