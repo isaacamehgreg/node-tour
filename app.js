@@ -3,7 +3,7 @@ const app = express();
 const fs = require('fs');
 const port = 8000;
 
-const tours = fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`,'utf-8');
+const tours = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`));
 // app.get('/', (req,res) => {
 //     res.status(200).send('hello from server');
 // });
@@ -16,8 +16,9 @@ const tours = fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`,'ut
 app.get('/api/v1/tours',(req, res)=>{
    res.status(200).json({ 
        status:'success',
+       results: tours.length,
        data:{
-           tours
+           tours:tours
        }
     });
     
