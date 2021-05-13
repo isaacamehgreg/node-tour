@@ -3,7 +3,7 @@ const app = express();
 const fs = require('fs');
 const port = 8000;
 
-const tours = fs.readFileSync(`${__dirname}/dev-date/tours-simple.json`)
+const tours = fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`,'utf-8');
 // app.get('/', (req,res) => {
 //     res.status(200).send('hello from server');
 // });
@@ -13,18 +13,18 @@ const tours = fs.readFileSync(`${__dirname}/dev-date/tours-simple.json`)
 // });
 
 
-app.get('api/v1/tours',(req, res)=>{
+app.get('/api/v1/tours',(req, res)=>{
    res.status(200).json({ 
        status:'success',
        data:{
            tours
        }
-    })
+    });
+    
 })
 
 
 
 app.listen(port, ()=>{
     console.log(`sever started at ${port}`);
-
 });
