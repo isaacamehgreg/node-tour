@@ -17,7 +17,7 @@ const getAllTours =(req, res)=>{
         }
      });
 }
-con
+
 
 
 
@@ -42,44 +42,65 @@ const getTour =  (req,res)=>{
 }
 
 const createTour = (req,res)=>{
-
+    res.status(200).json({ 
+        status:'success',
+        results: tours.length,
+        data:{
+            tours:"tours created"
+        }
+     });
 }
 
 const updateTour =(req,res)=>{
-
+    res.status(200).json({ 
+        status:'success',
+        results: tours.length,
+        data:{
+            tours:"updated"
+        }
+     });
 }
 const deleteTour = (req,res)=>{
-
+    res.status(204).json({ 
+        status:'success',
+        results: tours.length,
+        data:{
+            tours:"delete"
+        }
+     });
 }
 
 
 
 
 
-//get tours
-app.get('/api/v1/tours', getAllTours)
+// //get tours
+// app.get('/api/v1/tours', getAllTours)
 
 
-//create a tour
-app.post('/api/v1/tours',createTour);
+// //create a tour
+// app.post('/api/v1/tours',createTour);
 
 
-//get a single tour
+// //get a single tour
 
-app.get('/api/v1/tours/:id/:x?/:y?',getTour);
+// app.get('/api/v1/tours/:id/:x?/:y?',getTour);
 
-// update tours
-app.patch('/api/v1/tours/:id', updateTour)
+// // update tours
+// app.patch('/api/v1/tours/:id', updateTour)
 
-//delete tour
-app.delete('/api/v1/tours/:id', (req,res)=>{
-    res.status(204).json({
-        status:'success',
-        data:{ 
-            tours:`post ${req.body.id} deleted`
-        }
-    })
-});
+// //delete tour
+// app.delete('/api/v1/tours/:id', deleteTour);
+
+/////////......refactored route better
+
+app.route('/api/v1/tours')
+    .get(getAllTours)
+    .post(createTour);
+app.route('/api/v1/tours/:id')
+    .get(getTour)
+    .patch(updateTour)
+    .delete(deleteTour);
 
 
 
