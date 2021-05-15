@@ -7,39 +7,21 @@ const tours = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/data/tours-simpl
 
 app.use(express.json());//this is a middleware
 
-app.get('/', (req,res) => {
-    console.log('i was checked')
-    res.status(200).send('hello from server');
-});
 
-// app.get('/', (req,res) => {
-//     res.status(200).json({'message':'hello from server', 'name':'isaac ameh'});
-// });
-
-//get tours
-app.get('/api/v1/tours',(req, res)=>{
-   res.status(200).json({ 
-       status:'success',
-       results: tours.length,
-       data:{
-           tours:tours
-       }
-    });
-    
-})
+const getAllTours =(req, res)=>{
+    res.status(200).json({ 
+        status:'success',
+        results: tours.length,
+        data:{
+            tours:tours
+        }
+     });
+}
+con
 
 
-//create a tour
-app.post('/api/v1/tours',(req,res)=>{
-    
-    console.log(req.body);
-    res.send(`good`)
-});
 
-
-//get a single tour
-
-app.get('/api/v1/tours/:id/:x?/:y?', (req,res)=>{
+const getTour =  (req,res)=>{
 
 
     const id = req.params.id *1;
@@ -57,29 +39,47 @@ app.get('/api/v1/tours/:id/:x?/:y?', (req,res)=>{
 
      console.log(req.params);
      res.send('success');
-});
+}
+
+const createTour = (req,res)=>{
+
+}
+
+const updateTour =(req,res)=>{
+
+}
+const deleteTour = (req,res)=>{
+
+}
+
+
+
+
+
+//get tours
+app.get('/api/v1/tours', getAllTours)
+
+
+//create a tour
+app.post('/api/v1/tours',createTour);
+
+
+//get a single tour
+
+app.get('/api/v1/tours/:id/:x?/:y?',getTour);
 
 // update tours
-app.patch('/api/v1/tours/:id', (req,res)=>{
-    console.log(req.body.id);
+app.patch('/api/v1/tours/:id', updateTour)
 
-    if(req.body.id*1 > tours.length){
-        return   res.status(200).json({
-            status:'fail',
-            data:{ 
-                tours:'invalid tour'
-            }
-        })
-    }
-
-
-    res.status(200).json({
+//delete tour
+app.delete('/api/v1/tours/:id', (req,res)=>{
+    res.status(204).json({
         status:'success',
         data:{ 
-            tours:'tours update'
+            tours:`post ${req.body.id} deleted`
         }
     })
-})
+});
 
 
 
