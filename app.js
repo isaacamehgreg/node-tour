@@ -59,6 +59,31 @@ app.get('/api/v1/tours/:id/:x?/:y?', (req,res)=>{
      res.send('success');
 });
 
+// update tours
+app.patch('/api/v1/tours/:id', (req,res)=>{
+    console.log(req.body.id);
+
+    if(req.body.id*1 > tours.length){
+        return   res.status(200).json({
+            status:'fail',
+            data:{ 
+                tours:'invalid tour'
+            }
+        })
+    }
+
+
+    res.status(200).json({
+        status:'success',
+        data:{ 
+            tours:'tours update'
+        }
+    })
+})
+
+
+
+
 
 
 app.listen(port, ()=>{
