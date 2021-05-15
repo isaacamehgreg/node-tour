@@ -5,7 +5,17 @@ const port = 8000;
 
 const tours = JSON.parse(fs.readFileSync(`${__dirname}/dev-data/data/tours-simple.json`));
 
-app.use(express.json());//this is a middleware
+app.use(express.json()); //this is a middleware
+
+// all funtion can be a meidle ware
+//how to creat midle ware
+app.use((req, res, next)=>{
+    console.log('hello from the middleware');
+    console.log()
+    next();
+})
+
+/////////end  middleware creation///////////////////////////
 
 
 const getAllTours =(req, res)=>{
