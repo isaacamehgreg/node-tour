@@ -15,6 +15,14 @@ app.use((req, res, next)=>{
     next();
 })
 
+app.use(
+    (req,res) =>{
+        res.requestTime = new Date().toISOString;
+
+    }
+    next()
+)
+
 /////////end  middleware creation///////////////////////////
 
 
@@ -40,7 +48,7 @@ const getTour =  (req,res)=>{
     res.status(200).json({ 
         status:'success',
        
-        data:{
+        data:{                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
             tour,
         }
      }
